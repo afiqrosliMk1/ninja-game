@@ -2,6 +2,7 @@ import sys
 
 import pygame
 
+from scripts.utils import load_image
 from scripts.entities import PhysicsEntity
 
 class Game:
@@ -14,6 +15,10 @@ class Game:
         self.clock = pygame.time.Clock()
 
         self.movement = [False , False]
+
+        self.assets = {
+            'player': load_image('entities/player.png')
+        }
 
         self.player = PhysicsEntity( self , 'player'  , (50, 50) , (8 , 15) )
 
