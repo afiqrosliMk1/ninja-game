@@ -42,8 +42,11 @@ class Game:
         self.player = Player( self, (50, 50), (8 , 15))
 
         self.tilemap = Tilemap(self, tile_size=16)
+        self.tilemap.load('map.json')
 
         self.scroll = [0, 0] # camera position, add offset variable to everthing that renders
+
+
 
     def run(self):
         while True:
