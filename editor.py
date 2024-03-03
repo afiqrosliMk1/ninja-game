@@ -30,6 +30,11 @@ class Editor:
         self.movement = [False , False, False, False]
 
         self.tilemap = Tilemap(self, tile_size=16)
+        
+        try:
+            self.tilemap.load('map.json')
+        except FileNotFoundError:
+            pass
 
         self.scroll = [0, 0] # camera position, add offset variable to everthing that renders
 
