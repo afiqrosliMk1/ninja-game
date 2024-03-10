@@ -1,4 +1,5 @@
 import sys
+import math
 import random
 
 import pygame
@@ -81,6 +82,9 @@ class Game:
             for particle in self.particles.copy():
                 kill = particle.update()
                 particle.render(self.display, offset=render_scroll)
+                if particle.type == 'leaf':
+                    #use sin function to give a smooth curve 
+                    particle.pos[0] += math.sin(particle.animation.frame * 0.035) * 0.3
                 if kill:
                     self.particles.remove(particle)
 
