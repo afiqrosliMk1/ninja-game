@@ -37,7 +37,7 @@ class Game:
             'player/slide': Animation(load_images('entities/player/slide')),
             'player/wall_slide': Animation(load_images('entities/player/wall_slide')),
             'particle/leaf': Animation(load_images('particles/leaf'), img_dur=20, loop=False),
-            'particle/particle': Animation(load_images('particles/leaf'), img_dur=6, loop=False),
+            'particle/particle': Animation(load_images('particles/particle'), img_dur=6, loop=False),
             
         }
 
@@ -71,7 +71,7 @@ class Game:
             for rect in self.leaf_spawners:
                 if random.random() * 49999 < rect.width * rect.height:
                     pos = (rect.x + random.random() * rect.width, rect.y + random.random() * rect.height)
-                    self.particles.append(Particle(self, 'leaf', pos, velocity=[-0.1, 0.3], frame=random.randint(0, 20)))
+                    self.particles.append(Particle(self, 'particle', pos, velocity=[-0.1, 0.3], frame=random.randint(0, 20)))
 
             self.clouds.update()
             self.clouds.render(self.display, offset=render_scroll)
