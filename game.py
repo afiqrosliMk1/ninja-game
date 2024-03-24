@@ -52,7 +52,11 @@ class Game:
         self.player = Player( self, (50, 50), (8 , 15))
 
         self.tilemap = Tilemap(self, tile_size=16)
-        self.tilemap.load('map.json')
+
+        self.load_level(0)
+
+    def load_level(self, map_id):
+        self.tilemap.load('data/maps/' + str(map_id) + '.json')
 
         self.leaf_spawners = []
         for tree in self.tilemap.extract([('large_decor', 2)], keep=True):
@@ -70,8 +74,6 @@ class Game:
         self.particles = []
 
         self.scroll = [0, 0] # camera position, add offset variable to everthing that renders
-
-
 
     def run(self):
         while True:
@@ -106,7 +108,7 @@ class Game:
                 img = self.assets['projectile']
                 self.display.blit(img, (projectile[0][0] - img.get_width() / 2 - render_scroll[0], projectile[0][1] - img.get_height() / 2 - render_scroll[1]))
                 if self.tilemap.solid_check(projectile[0]):
-                    self.projectile.remove(projectile)
+                    self.projectiles.remove(projectile)
                 elif projectile[2] > 360:
                     self.projectiles.remove(projectile)
                 elif abs(self.player.dashing) < 50:
